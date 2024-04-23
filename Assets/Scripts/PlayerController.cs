@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    //Spaceshipコンポーネント
+    CommonSpaceship spaceship;
+
     // 移動スピード
     private float speed = 6;
 
@@ -15,6 +18,9 @@ public class PlayerController : MonoBehaviour
     //Startメソッドをコルーチンとして呼び出す
 　　IEnumerator Start()
     {
+        //Spaceshipコンポーネントを取得
+        spaceship = GetComponent<CommonSpaceship>();
+
         while(true)
         {
             //弾をプレイヤーと同じ位置/角度で作成
@@ -38,5 +44,18 @@ public class PlayerController : MonoBehaviour
 
         //移動する向きとスピードを代入する
         GetComponent<Rigidbody2D>().velocity = direction * speed;
+    }
+
+    //ぶつかった瞬間に呼び出される
+    private void OnTriggerEnter2D(Collider2D c)
+    {
+        //弾の削除
+        Destroy(c.gameObject);
+
+        //爆発する
+        spaceship.Explosion();
+
+        //プレイヤーを削除
+        Destroy(gameObject);
     }
 }
