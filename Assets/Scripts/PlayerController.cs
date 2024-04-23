@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
 
     //Startメソッドをコルーチンとして呼び出す
-　　IEnumerator Start()
+    IEnumerator Start()
     {
         //Spaceshipコンポーネントを取得
         spaceship = GetComponent<CommonSpaceship>();
@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     //ぶつかった瞬間に呼び出される
     private void OnTriggerEnter2D(Collider2D c)
     {
+        if(c.gameObject.tag == "Enemy")
+        {
         //弾の削除
         Destroy(c.gameObject);
 
@@ -57,5 +59,6 @@ public class PlayerController : MonoBehaviour
 
         //プレイヤーを削除
         Destroy(gameObject);
+        }
     }
 }
