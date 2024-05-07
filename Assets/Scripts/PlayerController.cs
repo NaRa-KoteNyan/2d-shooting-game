@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     //PlayerBulletをプレハブ
     public GameObject bullet;
+    public Manager manager;
 
     //Startメソッドをコルーチンとして呼び出す
     IEnumerator Start()
@@ -59,6 +60,9 @@ public class PlayerController : MonoBehaviour
 
         //プレイヤーを削除
         Destroy(gameObject);
+
+        //ManagerのGameOverメソッドを呼び出す
+        manager.GameOver();
         }
     }
 }
