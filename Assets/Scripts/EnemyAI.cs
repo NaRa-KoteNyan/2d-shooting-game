@@ -7,6 +7,30 @@ public class EnemyAI : MonoBehaviour
     //Spaceshipコンポーネント
     CommonSpaceship spaceship;
 
+    public int hp = 5;
+    public void OnTriggerEnter2D(Collider2D c)
+    {
+        if(c.gameObject.tag == "PlayerBullet")
+        {
+            Transform playerBulletTransform = c.transform.parent;
+
+            BulletBehaviour bullet = playerBulletTransform.GetComponent<BulletBehaviour>();
+
+            hp = hp - bullet.power;
+
+            //弾の削除
+            DestroyObject(c.gameObject);
+
+            if(hp <= 0)
+            {
+                //爆発する
+                spaceship.Explosion();
+                //敵を削除
+                Destroy(gameObject);
+            }
+        }
+    }
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
