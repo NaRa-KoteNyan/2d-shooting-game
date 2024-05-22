@@ -18,24 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public int hp = 10;
 
-    private void OnTriggerEnter2D(Collider2D c)
-    {
-        if(c.gameObject.tag == "EnemyBullet")
-        {
-            Transform EnemyBulletTransform = c.transform.parent;
-
-            BulletBehaviour bullet = EnemyBulletTransform.GetComponent<Bulletbehaviour>();
-
-            hp = hp - bullet.power;
-
-            Destroy(c.gameObject);
-
-            if(hp <= 0)
-            {
-                
-            }
-        }
-    }
+    public int score = 0;
 
     //Startメソッドをコルーチンとして呼び出す
     IEnumerator Start()
@@ -72,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
         //移動の制限
         Clamp();
+
+        
     }
 
     void Clamp()
@@ -109,6 +94,22 @@ public class PlayerController : MonoBehaviour
 
         //ManagerのGameOverメソッドを呼び出す
         manager.GameOver();
+        }
+        
+        else if(c.gameObject.tag == "EnemyBullet")
+        {
+            BulletBehaviour bullet = c.GetComponent<BulletBehaviour>();
+
+            hp = hp - bullet.power;
+
+            Destroy(c.gameObject);
+
+            if(hp <= 0)
+            {
+                spaceship.Explosion();
+                Destroy(gameObject);
+                manager.GameOver();
+            }
         }
     }
 }

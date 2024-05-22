@@ -27,6 +27,10 @@ public class EnemyAI : MonoBehaviour
                 spaceship.Explosion();
                 //敵を削除
                 Destroy(gameObject);
+                
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                player.GetComponent<PlayerController>().score += 1;
+                Debug.Log(player.GetComponent<PlayerController>().score);
             }
         }
     }
