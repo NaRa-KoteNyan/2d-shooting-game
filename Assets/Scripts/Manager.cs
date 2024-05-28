@@ -12,6 +12,8 @@ public class Manager : MonoBehaviour
     //タイトル
     public GameObject title;
 
+    public GameObject gameOver;
+
     void Start()
     {
         
@@ -38,7 +40,7 @@ public class Manager : MonoBehaviour
     public void GameOver()
     {
         //ゲームオーバー時にタイトルを表示する。
-        title.SetActive(true);
+        gameOver.SetActive(true);
     }
 
     public bool IsPlaying()
