@@ -62,6 +62,6 @@ public class Manager : MonoBehaviour
     public bool IsPlaying()
     {
         //タイトルが表示中ならゲーム中ではない。非表示ならゲーム中。
-        return title.activeSelf == false;
+        return title.activeSelf == false && gameOver.activeSelf == false;
     }
 }
