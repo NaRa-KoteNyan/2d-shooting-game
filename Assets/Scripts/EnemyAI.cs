@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
             hp = hp - bullet.power;
 
             //弾の削除
-            DestroyObject(c.gameObject);
+            Destroy(c.gameObject);
 
             if(hp <= 0)
             {

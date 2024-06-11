@@ -41,6 +41,22 @@ public class Manager : MonoBehaviour
     {
         //ゲームオーバー時にタイトルを表示する。
         gameOver.SetActive(true);
+
+        GameObject[] enemyobject = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject obj in enemyobject)
+        {
+            Destroy(obj);
+        }
+        GameObject[] enemybulletobject = GameObject.FindGameObjectsWithTag("EnemyBullet");
+        foreach(GameObject obj in enemybulletobject)
+        {
+            Destroy(obj);
+        }
+        GameObject[] playerbulletobject = GameObject.FindGameObjectsWithTag("PlayerBullet");
+        foreach(GameObject obj in playerbulletobject)
+        {
+            Destroy(obj);
+        }
     }
 
     public bool IsPlaying()
